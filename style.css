@@ -1,0 +1,582 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-w: #fff;
+  --color-b: #000;
+  --bgcol-nav: #33292a;
+  --bgcol-wwd: #333333;
+  --bgcol-ToGo: #64424f;
+  --bg-trip: #f2f2f2;
+  --col-hover: #e9877b;
+  --col-odkaz: #efa69d;
+}
+
+
+body,
+html {
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+
+/* Navigace */
+
+
+nav.navbar {
+  background-color: var(--bgcol-nav);
+  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  justify-content: center; /* vycentruje celý seznam <ul> */
+  align-items: center;
+  position: relative; 
+}
+
+.nav-links {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  list-style: none;
+  padding: 0 10px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: var(--color-w);
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover – při najetí myší */
+.navbar .nav-links li a:hover {
+  color: var(--col-hover);         
+}
+
+/* Focus – pro klávesovou navigaci (a11y) */
+.navbar .nav-links li a:focus {
+  outline: 2px solid var(--col-odkaz);
+  outline-offset: 2px;
+}
+
+
+.icon {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 35px;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hero sekce */
+
+.hero {
+  background-image: url(images/1_nav.jpg);
+  background-repeat: repeat-x;              /* 🆕 opakuje se do šířky */
+  background-size: auto 100%;              /* 🆕 výška 100%, šířka automatická */
+  background-position: center center;
+  height: 100vh;    /* 100% výšky viewportu */
+position: relative;
+  margin: 0; 
+  overflow: hidden;                        /* 🆕 zabrání horizontálnímu scrollu */
+}
+
+.hero-container { /* ⬅ nová třída */
+  max-width: 1200px;        /* ⬅ omezí šířku obsahu */
+  margin: 0 auto;           /* ⬅ zarovná na střed */
+  padding-right: 20px;      /* ⬅ mezera od pravého okraje viewportu */
+  height: 100%;             /* ⬅ aby text šel zarovnat dolů */
+  position: relative;
+}
+
+.hero-text {
+  position: absolute;
+  color: var(--color-w);
+  bottom: 20%;
+  right: 5%;
+  font-size: 50px;
+  text-align: right;       /* ⬅ změna: zarovnání textu vpravo */
+  width: 100%;             /* ⬅ změna: aby se zarovnání aplikovalo správně */
+}
+
+/* About sekce */
+
+#about {
+  display: flex;
+  align-items: stretch;   /* natáhne oba sloupce na stejnou výšku */
+  gap: 20px;              /* mezera mezi textem a obrázkem */
+  margin: 20px auto;      /* svislé odsazení + horizontálně vycentruje */
+  max-width: 1200px;      /* uprav podle layoutu – nikdy nezabere celou šířku */
+  padding: 0 20px; /* přidá trochu "dýchání" na menších viewportech */
+  height: auto; /* umožní růst podle obsahu */
+}
+
+#about .text-about {
+  flex: 1;                /* zabere zbylou plochu */
+  text-align: justify;
+  padding-right: 10px;
+  color: var(--color-b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+#about .image-about {
+  flex: 1;         /* flex-grow:0, flex-shrink:0, basis:25% */
+  display: flex;          /* aby <img> šel natáhnout na výšku kontejneru */
+  align-items: stretch;
+}
+
+
+#about .image-about img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* celé se vejde, neobřízne se */
+}
+
+#about .text-about .text-about-us {
+  /* přidá odsazení zleva a zprava + prostor dole */
+  padding: 20px 0px 0px 0px;
+}
+
+
+/* Sekce What We Do*/
+
+#what {
+  background-color: var(--bgcol-wwd);
+  color: var(--color-w);
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.wwd-text h2{
+  max-width: 1200px;       /* volitelné: stejné omezení šířky */
+ margin: 30px auto; /*   už máš 30px nahoře a dole */
+}
+
+.wwd-text p {
+  max-width: 1200px;       /* změna: max. šířka textu */
+  margin: 0 auto 80px;    /* změna: centrování a 100px spodní odsazení */
+}
+
+.wwd-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.wwd {
+  flex: 1 1 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.wwd-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wwd-icon img{
+  width: 100%;
+  max-width: 100px;
+}
+
+.wwd-icon-text{
+  color: var(--color-w);
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+}
+
+/* Sekce Trips*/
+
+#trips {
+  display: grid;
+  grid-template-rows: repeat(3, 300px);
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+max-width: 1200px;
+margin: auto;
+padding: 50px 0px;
+}
+
+.trips-gallery {
+height: 100%;
+flex-shrink: 0;
+border-radius: 5px;
+grid-template-rows: repeat(3, 300px);
+grid-template-columns: repeat(3, 1fr);
+}
+
+.trips-photo-1 {
+background-image: url(images/3_ourTrips1.jpg);
+background-size: cover;
+background-position: center;
+}
+
+.trips-photo-2 {
+  background-image: url(images/3_ourTrips2.jpg);
+  background-size: cover;
+  background-position: center;
+  }
+
+.trips-photo-3 {
+    background-image: url(images/3_ourTrips3.jpg);
+    background-size: cover;
+    background-position: center;
+    }
+
+    .trips-photo-4 {
+      background-image: url(images/3_ourTrips4.jpg);
+      background-size: cover;
+      background-position: center;
+      }
+
+      .trips-photo-6 {
+        background-image: url(images/3_ourTrips6.jpg);
+        background-size: cover;
+        background-position: center;
+        }
+
+        .trips-photo-7 {
+          background-image: url(images/3_ourTrips7.jpg);
+          background-size: cover;
+          background-position: center;
+          }
+
+          .trips-photo-8 {
+            background-image: url(images/3_ourTrips8.jpg);
+            background-size: cover;
+            background-position: center;
+            }
+
+            .trips-photo-9 {
+              background-image: url(images/3_ourTrips9.jpg);
+              background-size: cover;
+              background-position: center;
+              }
+
+              
+
+.trips-text {
+background-color: var(--bg-trip);
+color: var(--color-b);
+font-size: 32px;
+font-weight: bold;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Sekce Where*/
+
+#where {
+  background-color: var(--bgcol-ToGo);
+}
+
+.where {
+  max-width: 1200px;
+  color: var(--color-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: center;
+}
+
+.where-nadpis {
+  flex: 1;
+  margin: 0;
+}
+
+.where-text {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.where-contact {
+  display: block;
+  margin: 25px 0px 40px;
+  ;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-w);
+  color: var(--color-b);
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+
+  color: var(--col-hover);             /* světlý text */
+}
+
+.button:focus {
+  outline: 2px solid var(--col-odkaz);
+  outline-offset: 2px;
+}
+
+ /* Reviews sekce */
+
+ #reviews {
+  padding: 60px 0px;
+  display: flex;
+  justify-content: center; /* zarovná .reviews-wrapper na střed */
+ }
+
+ .reviews-wrapper {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.reviews-h2 {
+  text-align: center;
+}
+
+.reviews-intro {
+  max-width: 500px;
+  margin: 0 auto 40px;
+  text-align: center; 
+  padding: 20px;
+}
+
+.reviews-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.review {
+  flex: 1 1 200px;
+  max-width: 500px;
+}
+
+.review-img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.reviewer-text {
+  padding: 20px 0 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.reviewer-name {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+
+  /* Photos sekce */
+
+  #photo {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    aspect-ratio: 1024 / 683; 
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Footer sekce */
+
+  .footer {
+    background-color: var(--bgcol-nav);
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--color-w);
+  }
+
+  .footer-link {
+    color: #efa69d;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 25px;
+  }
+
+  .footer h6 {
+    margin-bottom: 15px;
+  }
+
+  .footer-link:hover {
+    color: #e9877b;
+  }
+
+  .footer-link:focus {
+    outline: 2px solid #e9877b;
+    outline-offset: 2px;
+  }
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  nav ul a {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  /* Hero sekce */
+
+  .hero-text {
+    font-size: 40px;
+    bottom: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav ul a {
+    display: none;
+  }
+
+  .icon {
+    display: block;
+  }
+
+  /* Hero sekce */
+  .hero-text {
+    font-size: 20px; 
+    bottom: 10%;
+    right: 10%;
+  }
+
+    /* about sekce */
+    #about {
+      flex-direction: column;
+      margin: 30px;
+    }
+    #about .image-about {
+      flex: 0 0 auto;
+      height: 300px;       
+      width: 100%;
+    }
+
+    /* wwd sekce */
+    .wwd-container {
+ flex-direction: column;
+ align-items: center;
+ gap: 20px;
+    }
+
+    .wwd {
+      width: 100%;
+      max-width: 300px;        /* 🆕 omezení šířky každého bloku */
+      margin: 5px auto;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .wwd-icon {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .wwd-icon-text {
+      padding: 5px 0 20px;
+      font-size: 18px;
+    }
+
+    /* trips sekce */
+
+    #trips {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .trips-text {
+      background-color: var(--bg-trip);
+      font-size: 24px;
+      height: 80px;
+      padding: 0 10px;
+      }
+
+.trips-gallery {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.trips-gallery:not(.trips-text) {
+  height: 200px;
+}
+
+    /* Sekce Where*/
+
+    #where {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .where {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .where-text {
+      align-items: flex-start;
+    }
+
+    /* Sekce Reviewes*/
+
+    .reviews-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .review {
+      width: 100%;
+    }
+
+        /* Sekce Reviewes*/
+
+        .photo-grid {
+          grid-template-columns: 1fr;
+        } 
+
+}
